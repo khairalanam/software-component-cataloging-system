@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { generateCatalogId } from '@/utils/generateIDs'
-import { Link, redirect } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Catalog } from '@/types/Catalog'
 
 const NewCatalogForm = (): JSX.Element => {
@@ -8,6 +8,7 @@ const NewCatalogForm = (): JSX.Element => {
   const [description, setDescription] = useState('')
   const [author, setAuthor] = useState('')
   const [error, setError] = useState('')
+  const navigate = useNavigate()
 
   const handleSubmit = async (e): Promise<void> => {
     e.preventDefault()
@@ -28,7 +29,7 @@ const NewCatalogForm = (): JSX.Element => {
     } catch (error) {
       console.error('Error inserting catalog:', error)
     } finally {
-      redirect('/')
+      navigate('/')
     }
   }
 
