@@ -6,6 +6,7 @@ import App from './App'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import CatalogInterface from './components/single-catalog-interface/CatalogInterface'
+import NewCatalogForm from './components/new-catalog-interface/NewCatalogForm'
 
 const router = createBrowserRouter([
   {
@@ -13,8 +14,12 @@ const router = createBrowserRouter([
     element: <App />
   },
   {
-    path: 'catalogs/:catalogId',
+    path: '/catalogs/:catalogId',
     element: <CatalogInterface />
+  },
+  {
+    path: '/new-catalog',
+    element: <NewCatalogForm />
   }
 ])
 

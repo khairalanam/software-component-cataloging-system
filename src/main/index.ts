@@ -143,39 +143,17 @@ app.whenReady().then(() => {
     }
   })
 
-  ipcMain.handle('test-insert-catalogs', async () => {
+  ipcMain.handle('insert-catalog', async (_, newCatalog) => {
     try {
       const database = await db
       const newCatalogInsert = await database.prepare('INSERT into catalogs VALUES (?, ?, ?, ?)')
 
-      const insertMany = database.transaction((catalogs: Catalog[]) => {
-        for (const catalog of catalogs)
-          newCatalogInsert.run(catalog.id, catalog.name, catalog.description, catalog.author)
+      const insertOne = database.transaction((catalog: Catalog) => {
+        newCatalogInsert.run(catalog.id, catalog.name, catalog.description, catalog.author)
       })
 
-      const testCatalogs: Catalog[] = [
-        {
-          id: 'CAT-1A2B3C4D5E6F',
-          name: 'Test Catalog 1',
-          description: 'Test Desc 1',
-          author: 'John Doe'
-        },
-        {
-          id: 'CAT-7G8H9I0J1K2',
-          name: 'Test Catalog 2',
-          description: 'Test Desc 2',
-          author: 'Jane Smith'
-        },
-        {
-          id: 'CAT-3L4M5N6O7P8',
-          name: 'Test Catalog 3',
-          description: 'Test Desc 3',
-          author: 'Bob Williams'
-        }
-      ]
-
-      await insertMany(testCatalogs)
-      console.log('Insert Yay!')
+      await insertOne(JSON.parse(newCatalog))
+      console.log('Actual Insert Yay!')
     } catch (error) {
       console.error('Error inserting catalogs:', error)
       throw error

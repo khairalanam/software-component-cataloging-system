@@ -10,7 +10,7 @@ function App(): JSX.Element {
 
   return (
     <>
-      <Button text={'New Catalog'} link="/" reactIcon={null} />
+      <Button text={'New Catalog'} link="/new-catalog" reactIcon={null} />
       <div className="m-8"></div>
       <Tabs defaultValue="catalogs" className="flex flex-col gap-8">
         <TabsList className="bg-zinc-800 flex flex-row justify-between text-white font-semibold p-2 gap-2 rounded-lg">

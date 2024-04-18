@@ -40,13 +40,13 @@ if (process.contextIsolated) {
             throw error
           }
         },
-        insertCatalogs: async () => {
+        insertCatalog: async (newCatalog) => {
           try {
-            await ipcRenderer.invoke('create-tables')
-            await ipcRenderer.invoke('test-insert-catalogs')
-            console.log('Inserted!')
+            // await ipcRenderer.invoke('create-tables')
+            await ipcRenderer.invoke('insert-catalog', newCatalog)
+            console.log('Actually Inserted!')
           } catch (error) {
-            console.error('Error inserting catalogs to database:', error)
+            console.error('Error inserting catalog to database:', error)
             throw error
           }
         },
