@@ -12,8 +12,10 @@ const ComponentCard = ({ id, catalogId, name, type, desc, data }: Component): JS
         <p className="line-clamp-2 text-ellipsis text-gray-500">
           {desc ? desc : <i>No description</i>}
         </p>
-        <h4 className="text-gray-400">Type: {type === 'CODE' ? <i>Code</i> : <i>Design</i>}</h4>
-        <h4 className="text-gray-400">Catalog: {catalogId}</h4>
+        <div className="flex justify-between">
+          <h4 className="text-gray-400">Type: {type === 'CODE' ? <i>Code</i> : <i>Design</i>}</h4>
+          <h4 className="text-gray-400">Catalog: {catalogId}</h4>
+        </div>
       </div>
     </article>
   )
