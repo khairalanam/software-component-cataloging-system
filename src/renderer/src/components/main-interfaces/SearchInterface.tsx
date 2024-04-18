@@ -145,7 +145,7 @@ const SearchInterface = (): JSX.Element => {
   )
 
   return (
-    <div className="bg-zinc-700 p-4 border-2 border-blue-700 rounded-lg max-h-fit">
+    <div className="bg-zinc-700 p-4 rounded-lg max-h-fit">
       <input
         type="text"
         placeholder="Search components..."

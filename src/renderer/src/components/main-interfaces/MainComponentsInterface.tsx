@@ -139,7 +139,7 @@ const MainComponentsInterface = (): JSX.Element => {
   console.log('components: ', components)
 
   return (
-    <ul className="bg-zinc-700 p-4 border-2 border-blue-700 rounded-lg max-h-fit grid grid-flow-row grid-cols-3 gap-4 max-lg:grid-cols-2">
+    <ul className="bg-zinc-700 p-4 rounded-lg max-h-fit grid grid-flow-row grid-cols-3 gap-4 max-lg:grid-cols-2">
       {testComponents.map(({ id, catalogId, name, type, desc, data }) => (
         <ComponentCard
           key={id}

@@ -12,7 +12,7 @@ function App(): JSX.Element {
     <>
       <Button text={'New Catalog'} link="/" reactIcon={null} />
       <div className="m-8"></div>
-      <Tabs defaultValue="catalogs" className="border border-blue-500 flex flex-col gap-8">
+      <Tabs defaultValue="catalogs" className="flex flex-col gap-8">
         <TabsList className="bg-zinc-800 flex flex-row justify-between text-white font-semibold p-2 gap-2 rounded-lg">
           <TabsTrigger
             className={`w-full py-2 transition-colors rounded-lg ${activeTab === 'catalogs' ? 'bg-zinc-900' : 'bg-zinc-800'}`}
