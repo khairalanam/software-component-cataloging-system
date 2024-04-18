@@ -80,6 +80,18 @@ app.whenReady().then(() => {
       throw error
     }
   })
+
+  ipcMain.handle('fetch-components', async () => {
+    try {
+      const database = await db
+      const fetchedComponents = await database.prepare('SELECT * FROM components').all()
+      console.log('Yay Yay!')
+      return fetchedComponents
+    } catch (error) {
+      console.error('Error fetching components:', error)
+      throw error
+    }
+  })
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common

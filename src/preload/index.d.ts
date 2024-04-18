@@ -1,4 +1,5 @@
 import { Catalog } from '@/types/Catalog'
+import { Component } from '@/types/Component'
 import { ElectronAPI } from '@electron-toolkit/preload'
 
 declare global {
@@ -8,6 +9,7 @@ declare global {
     db: {
       db: {
         fetchCatalogs: () => Catalog[]
+        fetchComponents: () => Component[]
       }
     }
   }

@@ -30,6 +30,15 @@ if (process.contextIsolated) {
             console.error('Error fetching catalogs from database:', error)
             throw error
           }
+        },
+        fetchComponents: async () => {
+          try {
+            const fetchedComponents = await ipcRenderer.invoke('fetch-components')
+            return fetchedComponents
+          } catch (error) {
+            console.error('Error fetching components from database:', error)
+            throw error
+          }
         }
       }
     })
