@@ -39,6 +39,25 @@ if (process.contextIsolated) {
             console.error('Error fetching components from database:', error)
             throw error
           }
+        },
+        insertCatalogs: async () => {
+          try {
+            await ipcRenderer.invoke('create-tables')
+            await ipcRenderer.invoke('test-insert-catalogs')
+            console.log('Inserted!')
+          } catch (error) {
+            console.error('Error inserting catalogs to database:', error)
+            throw error
+          }
+        },
+        fetchSingleCatalog: async (catalogId) => {
+          try {
+            const fetchedCatalog = await ipcRenderer.invoke('fetch-single-catalog', catalogId)
+            return fetchedCatalog
+          } catch (error) {
+            console.error('Error fetching single catalog from database:', error)
+            throw error
+          }
         }
       }
     })

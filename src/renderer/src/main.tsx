@@ -5,11 +5,16 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import CatalogInterface from './components/single-catalog-interface/CatalogInterface'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />
+  },
+  {
+    path: 'catalogs/:catalogId',
+    element: <CatalogInterface />
   }
 ])
 

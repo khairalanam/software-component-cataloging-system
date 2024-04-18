@@ -10,6 +10,8 @@ declare global {
       db: {
         fetchCatalogs: () => Catalog[]
         fetchComponents: () => Component[]
+        insertCatalogs: () => void
+        fetchSingleCatalog: (string) => Catalog
       }
     }
   }

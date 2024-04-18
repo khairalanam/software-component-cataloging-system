@@ -3,6 +3,7 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png'
 import Database from 'better-sqlite3'
+import { Catalog } from '@/types/Catalog'
 
 const dbPath = 'db/data.db'
 
@@ -81,6 +82,41 @@ app.whenReady().then(() => {
     }
   })
 
+  ipcMain.handle('create-tables', async () => {
+    const database = await db
+    const newTable = await database
+      .prepare(
+        `
+    CREATE TABLE IF NOT EXISTS catalogs (
+      id VARCHAR(16) PRIMARY KEY,
+      name TEXT,
+      description TEXT,
+      author TEXT
+    )
+  `
+      )
+      .run()
+
+    console.log(newTable.changes)
+
+    // await database.exec(`
+    // CREATE TABLE IF NOT EXISTS components (
+    //   id INTEGER PRIMARY KEY,
+    //   name TEXT,
+    //   type TEXT,
+    //   catalog_id INTEGER,
+    //   data TEXT,
+    //   description TEXT,
+    //   frequency INTEGER DEFAULT 0,
+    //   last_accessed TEXT,
+    //   created_at TEXT,
+    //   FOREIGN KEY (catalog_id) REFERENCES catalogs(id)
+    // )
+    // `)
+
+    console.log('Tables created!')
+  })
+
   ipcMain.handle('fetch-components', async () => {
     try {
       const database = await db
@@ -89,6 +125,59 @@ app.whenReady().then(() => {
       return fetchedComponents
     } catch (error) {
       console.error('Error fetching components:', error)
+      throw error
+    }
+  })
+
+  ipcMain.handle('fetch-single-catalog', async (_, catalogId) => {
+    try {
+      const database = await db
+      const fetchedCatalog = await database
+        .prepare('SELECT * FROM catalogs WHERE id = ?')
+        .get(catalogId)
+      console.log('Even Yay!')
+      return fetchedCatalog
+    } catch (error) {
+      console.error('Error fetching single catalog', error)
+      throw error
+    }
+  })
+
+  ipcMain.handle('test-insert-catalogs', async () => {
+    try {
+      const database = await db
+      const newCatalogInsert = await database.prepare('INSERT into catalogs VALUES (?, ?, ?, ?)')
+
+      const insertMany = database.transaction((catalogs: Catalog[]) => {
+        for (const catalog of catalogs)
+          newCatalogInsert.run(catalog.id, catalog.name, catalog.description, catalog.author)
+      })
+
+      const testCatalogs: Catalog[] = [
+        {
+          id: 'CAT-1A2B3C4D5E6F',
+          name: 'Test Catalog 1',
+          description: 'Test Desc 1',
+          author: 'John Doe'
+        },
+        {
+          id: 'CAT-7G8H9I0J1K2',
+          name: 'Test Catalog 2',
+          description: 'Test Desc 2',
+          author: 'Jane Smith'
+        },
+        {
+          id: 'CAT-3L4M5N6O7P8',
+          name: 'Test Catalog 3',
+          description: 'Test Desc 3',
+          author: 'Bob Williams'
+        }
+      ]
+
+      await insertMany(testCatalogs)
+      console.log('Insert Yay!')
+    } catch (error) {
+      console.error('Error inserting catalogs:', error)
       throw error
     }
   })
