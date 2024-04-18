@@ -1,9 +1,9 @@
 import Button from './components/Button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@shadcn/components/ui/tabs'
 import { useState } from 'react'
-import CatalogsInterface from './components/CatalogsInterface'
-import SearchInterface from './components/SearchInterface'
-import MainComponentsInterface from './components/MainComponentsInterface'
+import CatalogsInterface from './components/main-interfaces/CatalogsInterface'
+import SearchInterface from './components/main-interfaces/SearchInterface'
+import MainComponentsInterface from './components/main-interfaces/MainComponentsInterface'
 
 function App(): JSX.Element {
   const [activeTab, setActiveTab] = useState('catalogs')

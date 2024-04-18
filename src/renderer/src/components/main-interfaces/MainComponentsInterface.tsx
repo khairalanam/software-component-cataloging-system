@@ -1,6 +1,6 @@
 import { Component } from '@/types/Component'
 import { useEffect, useState } from 'react'
-import ComponentCard from './ComponentCard'
+import ComponentCard from '../ComponentCard'
 
 const MainComponentsInterface = (): JSX.Element => {
   const [components, setComponents] = useState<Component[]>()

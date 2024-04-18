@@ -1,6 +1,6 @@
 import { Catalog } from '@/types/Catalog'
 import { useEffect, useState } from 'react'
-import CatalogCard from './CatalogCard'
+import CatalogCard from '../CatalogCard'
 
 const CatalogsInterface = (): JSX.Element => {
   const [catalogs, setCatalogs] = useState<Catalog[]>()
