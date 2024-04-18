@@ -58,6 +58,25 @@ if (process.contextIsolated) {
             console.error('Error fetching single catalog from database:', error)
             throw error
           }
+        },
+        updateCatalog: async (updatedCatalog) => {
+          try {
+            // await ipcRenderer.invoke('create-tables')
+            await ipcRenderer.invoke('update-catalog', updatedCatalog)
+            console.log('Actually Updated!')
+          } catch (error) {
+            console.error('Error updating catalog in database:', error)
+            throw error
+          }
+        },
+        deleteCatalog: async (deletedCatalogId) => {
+          try {
+            await ipcRenderer.invoke('delete-catalog', deletedCatalogId)
+            console.log('Actually Deleted!')
+          } catch (error) {
+            console.error('Error deleting catalog from database:', error)
+            throw error
+          }
         }
       }
     })

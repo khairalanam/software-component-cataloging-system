@@ -159,6 +159,44 @@ app.whenReady().then(() => {
       throw error
     }
   })
+
+  ipcMain.handle('update-catalog', async (_, updatedCatalog) => {
+    try {
+      const database = await db
+      const newCatalogUpdate = await database.prepare(
+        'UPDATE catalogs SET name = ?, description = ?, author = ? WHERE id = ?'
+      )
+
+      const updateOne = database.transaction((catalog: Catalog) => {
+        newCatalogUpdate.run(catalog.name, catalog.description, catalog.author, catalog.id)
+      })
+
+      await updateOne(JSON.parse(updatedCatalog))
+      console.log('Actual Update Yay!')
+    } catch (error) {
+      console.error('Error updating catalog:', error)
+      throw error
+    }
+  })
+
+  ipcMain.handle('delete-catalog', async (_, deletedCatalogId) => {
+    try {
+      const database = await db
+      const catalogDelete = await database.prepare('DELETE from catalogs WHERE id = ?')
+      const emptyDelete = await database.prepare('DELETE from catalogs where name is NULL')
+
+      const deleteOne = database.transaction((catalogId: string) => {
+        catalogDelete.run(catalogId)
+        emptyDelete.run()
+      })
+
+      await deleteOne(deletedCatalogId)
+      console.log('Actual Delete Yay!')
+    } catch (error) {
+      console.error('Error deleting catalog:', error)
+      throw error
+    }
+  })
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common
