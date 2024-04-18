@@ -3,6 +3,6 @@ export interface Component {
   catalogId: string
   name: string
   type: 'CODE' | 'DESIGN'
-  desc: string
+  desc?: string
   data: unknown
 }

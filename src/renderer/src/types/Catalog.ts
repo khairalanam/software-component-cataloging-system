@@ -1,6 +1,6 @@
 export interface Catalog {
   id: string
   name: string
-  desc: string
-  author: string
+  desc?: string
+  author?: string
 }
