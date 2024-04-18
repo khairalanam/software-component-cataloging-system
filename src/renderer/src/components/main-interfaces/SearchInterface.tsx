@@ -129,8 +129,6 @@ const SearchInterface = (): JSX.Element => {
     }
   ]
 
-  console.log(components)
-
   useEffect(() => {
     const fetchingComponents = async (): Promise<void> => {
       const fetchedComponents = await window.db.db.fetchComponents()
@@ -139,6 +137,8 @@ const SearchInterface = (): JSX.Element => {
 
     fetchingComponents()
   }, [])
+
+  console.log(components)
 
   const filteredComponents = testComponents.filter((component) =>
     component.name.toLowerCase().includes(searchQuery.toLowerCase())

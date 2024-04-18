@@ -1,7 +1,6 @@
 import { Component } from '@/types/Component'
 
 const ComponentCard = ({ id, catalogId, name, type, desc, data }: Component): JSX.Element => {
-  console.log(typeof data)
   return (
     <article
       key={id}
