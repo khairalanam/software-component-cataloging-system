@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
 const DeleteComponentInterface = (): JSX.Element => {
@@ -8,15 +8,23 @@ const DeleteComponentInterface = (): JSX.Element => {
 
   console.log(componentId, useParams())
 
+  useEffect(() => {
+    const fetchingSingleComponent = async (): Promise<void> => {
+      const fetchedComponent = await window.db.db.fetchSingleComponent(componentId)
+      console.log(fetchedComponent)
+      setCatalogId(fetchedComponent.catalog_id)
+    }
+
+    fetchingSingleComponent()
+  }, [])
+
   const handleDelete = async (): Promise<void> => {
     try {
-      const fetchedComponent = await window.db.db.fetchSingleComponent(componentId)
-      setCatalogId(fetchedComponent.catalogId)
-      await window.db.db.deleteCatalog(componentId)
+      await window.db.db.deleteComponent(componentId)
     } catch (err) {
       console.error('Error deleting component:', err)
     } finally {
-      navigate(`/catalogs${catalogId ? '/' + catalogId : ''}`)
+      navigate(`/catalogs/${catalogId}`)
     }
   }
 

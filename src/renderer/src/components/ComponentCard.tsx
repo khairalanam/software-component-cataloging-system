@@ -30,12 +30,12 @@ const ComponentCard = ({
               <BsThreeDotsVertical />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="text-white bg-zinc-950 py-4 flex flex-col gap-4 min-w-32">
-              <Link to={`/edit-catalog/${id}`}>
+              <Link to={`/components/${id}/edit-component`}>
                 <DropdownMenuItem className="px-4 hover:border-none focus:border-none hover:bg-zinc-100 hover:text-zinc-950 font-semibold transition-colors py-2">
                   Edit
                 </DropdownMenuItem>
               </Link>
-              <Link to={`/catalogs/${catalogId}/${id}/delete-component`}>
+              <Link to={`/components/${id}/delete-component`}>
                 <DropdownMenuItem className="px-4 hover:border-none focus:border-none hover:bg-zinc-100 hover:text-zinc-950 font-semibold transition-colors py-2">
                   Delete
                 </DropdownMenuItem>
