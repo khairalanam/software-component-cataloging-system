@@ -7,7 +7,7 @@
     "src/shared/**/*",
     "shadcn/**/*",
     "db/**/*"
-, "src/renderer/src/utils/generateIDs.ts"  ],
+, "src/renderer/src/utils/generateIDs.tsx"  ],
   "compilerOptions": {
     "composite": true,
     "noEmit": true,

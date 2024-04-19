@@ -19,7 +19,7 @@ export async function generateCatalogId(): Promise<string> {
 }
 
 export async function generateComponentId(): Promise<string> {
-  const existingComponents = await window.db.db.fetchCatalogs()
+  const existingComponents = await window.db.db.fetchComponents()
 
   let newId
   do {
