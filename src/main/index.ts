@@ -190,9 +190,11 @@ app.whenReady().then(() => {
     try {
       const database = await db
       const catalogDelete = await database.prepare('DELETE from catalogs WHERE id = ?')
+      const componentsDelete = await database.prepare('DELETE from components WHERE catalog_id = ?')
       const emptyDelete = await database.prepare('DELETE from catalogs where name is NULL')
 
       const deleteOne = database.transaction((catalogId: string) => {
+        componentsDelete.run(catalogId)
         catalogDelete.run(catalogId)
         emptyDelete.run()
       })
@@ -279,6 +281,25 @@ app.whenReady().then(() => {
       console.log('Actual Delete Component Yay!')
     } catch (error) {
       console.error('Error deleting component:', error)
+      throw error
+    }
+  })
+
+  ipcMain.handle('update-component', async (_, updatedComponent) => {
+    try {
+      const database = await db
+      const newComponentUpdate = await database.prepare(
+        'UPDATE components SET name = ?, description = ?, data = ? WHERE id = ?'
+      )
+
+      const updateOne = database.transaction((component: Component) => {
+        newComponentUpdate.run(component.name, component.description, component.data, component.id)
+      })
+
+      await updateOne(JSON.parse(updatedComponent))
+      console.log('Actual Update Component Yay!')
+    } catch (error) {
+      console.error('Error updating component:', error)
       throw error
     }
   })

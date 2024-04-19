@@ -18,6 +18,7 @@ declare global {
         insertComponent: (string, Date, Date) => void
         fetchSingleComponent: (string) => Component
         deleteComponent: (string) => void
+        updateComponent: (string) => void
       }
     }
   }

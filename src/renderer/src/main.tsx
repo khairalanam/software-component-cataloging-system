@@ -12,6 +12,7 @@ import DeleteCatalogInterface from './components/single-catalog-interface/Delete
 import NewComponentInterface from './components/single-component-interface/NewComponentInterface'
 import DeleteComponentInterface from './components/single-component-interface/DeleteComponentInterface'
 import ComponentInterface from './components/single-component-interface/ComponentInterface'
+import EditComponentInterface from './components/single-component-interface/EditComponentInterface'
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: '/components/:componentId/delete-component',
     element: <DeleteComponentInterface />
+  },
+  {
+    path: '/components/:componentId/edit-component',
+    element: <EditComponentInterface />
   },
   {
     path: '/catalogs/:catalogId/new-component',

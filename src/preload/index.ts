@@ -119,6 +119,16 @@ if (process.contextIsolated) {
             console.error('Error deleting component from database:', error)
             throw error
           }
+        },
+        updateComponent: async (updatedComponent) => {
+          try {
+            // await ipcRenderer.invoke('create-tables')
+            await ipcRenderer.invoke('update-component', updatedComponent)
+            console.log('Actually Component Updated!')
+          } catch (error) {
+            console.error('Error updating component in database:', error)
+            throw error
+          }
         }
       }
     })
