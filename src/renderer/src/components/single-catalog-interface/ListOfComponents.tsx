@@ -16,7 +16,7 @@ const ListOfComponents = (): JSX.Element => {
   }, [catalogId])
 
   return (
-    <section className="mt-12 bg-zinc-700 p-4 rounded-lg max-h-fit grid grid-flow-row grid-cols-3 gap-4 max-lg:grid-cols-2 text-white">
+    <section className="mt-12 bg-zinc-700 p-4 rounded-lg max-h-72 overflow-auto scrollbar scrollbar-none grid grid-flow-row grid-cols-3 gap-4 max-lg:grid-cols-2 text-white">
       {catalogComponents &&
         catalogComponents.map(({ id, catalogId, name, type, desc, data }) => (
           <ComponentCard
