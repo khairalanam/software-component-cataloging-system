@@ -19,13 +19,13 @@ const MainComponentsInterface = (): JSX.Element => {
   return (
     <ul className="bg-zinc-700 p-4 rounded-lg max-h-fit grid grid-flow-row grid-cols-3 gap-4 max-lg:grid-cols-2">
       {components &&
-        components.map(({ id, catalogId, name, type, desc, data }) => (
+        components.map(({ id, catalogId, name, type, description, data }) => (
           <ComponentCard
             key={id}
             catalogId={catalogId}
             id={id}
             name={name}
-            desc={desc}
+            description={description}
             type={type}
             data={data}
           />

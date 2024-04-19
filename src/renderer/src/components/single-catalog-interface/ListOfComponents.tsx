@@ -18,15 +18,15 @@ const ListOfComponents = (): JSX.Element => {
   return (
     <section className="mt-12 bg-zinc-700 p-4 rounded-lg max-h-72 overflow-auto scrollbar scrollbar-none grid grid-flow-row grid-cols-3 gap-4 max-lg:grid-cols-2 text-white">
       {catalogComponents &&
-        catalogComponents.map(({ id, catalogId, name, type, desc, data }) => (
+        catalogComponents.map((component: Component) => (
           <ComponentCard
-            key={id}
-            catalogId={catalogId}
-            id={id}
-            name={name}
-            desc={desc}
-            type={type}
-            data={data}
+            key={component.id}
+            catalogId={component.catalogId}
+            id={component.id}
+            name={component.name}
+            description={component.description}
+            type={component.type}
+            data={component.data}
           />
         ))}
     </section>

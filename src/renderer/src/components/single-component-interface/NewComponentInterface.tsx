@@ -47,7 +47,7 @@ const NewComponentInterface = (): JSX.Element => {
       catalogId,
       name,
       type: 'CODE',
-      desc: description,
+      description,
       data,
       frequency: 0,
       lastAccessed,
@@ -113,7 +113,7 @@ const NewComponentInterface = (): JSX.Element => {
           <div className="flex justify-between gap-4">
             <Link
               type="button"
-              to="/"
+              to={`/catalogs/${catalogId}`}
               className="text-zinc-700 bg-zinc-200 px-8 py-3 block text-center font-semibold rounded-lg hover:-translate-y-1 hover:bg-zinc-900 hover:text-white focus:outline-none transition-all active:text-zinc-700 active:bg-zinc-200 active:translate-y-1 w-full"
             >
               Cancel

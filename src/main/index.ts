@@ -234,7 +234,7 @@ app.whenReady().then(() => {
           component.type,
           component.catalogId,
           component.data,
-          component.desc,
+          component.description,
           component.frequency,
           lastAccessed!.toISOString().slice(0, 19).replace('T', ' '),
           createdAt!.toISOString().slice(0, 19).replace('T', ' ')
@@ -245,6 +245,40 @@ app.whenReady().then(() => {
       console.log('Actual Insert Comp Yay!')
     } catch (error) {
       console.error('Error inserting component:', error)
+      throw error
+    }
+  })
+
+  ipcMain.handle('fetch-single-component', async (_, componentId) => {
+    try {
+      const database = await db
+      console.log('Single Component Fetching')
+      const fetchedComponent = await database
+        .prepare('SELECT * FROM components WHERE id = ?')
+        .get(componentId)
+      console.log('Even Fetch Single Component Yay!')
+      return fetchedComponent
+    } catch (error) {
+      console.error('Error fetching single component', error)
+      throw error
+    }
+  })
+
+  ipcMain.handle('delete-component', async (_, deletedComponentId) => {
+    try {
+      const database = await db
+      const componentDelete = await database.prepare('DELETE from components WHERE id = ?')
+      const emptyDelete = await database.prepare('DELETE from components where name is NULL')
+
+      const deleteOne = database.transaction((componentId: string) => {
+        componentDelete.run(componentId)
+        emptyDelete.run()
+      })
+
+      await deleteOne(deletedComponentId)
+      console.log('Actual Delete Component Yay!')
+    } catch (error) {
+      console.error('Error deleting component:', error)
       throw error
     }
   })

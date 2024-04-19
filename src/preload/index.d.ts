@@ -16,6 +16,8 @@ declare global {
         deleteCatalog: (string) => void
         fetchComponentsByCatalog: (string) => Component[]
         insertComponent: (string, Date, Date) => void
+        fetchSingleComponent: (string) => Component
+        deleteComponent: (string) => void
       }
     }
   }

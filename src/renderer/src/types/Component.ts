@@ -3,8 +3,8 @@ export interface Component {
   catalogId: string | undefined
   name: string
   type: 'CODE' | 'DESIGN'
-  desc?: string
-  data: unknown
+  description?: string
+  data: string
   frequency?: number
   lastAccessed?: Date
   createdAt?: Date

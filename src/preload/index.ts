@@ -100,6 +100,25 @@ if (process.contextIsolated) {
             console.error('Error inserting component to database:', error)
             throw error
           }
+        },
+        fetchSingleComponent: async (componentId) => {
+          try {
+            console.log('Really')
+            const fetchedComponent = await ipcRenderer.invoke('fetch-single-component', componentId)
+            return fetchedComponent
+          } catch (error) {
+            console.error('Error fetching single component from database:', error)
+            throw error
+          }
+        },
+        deleteComponent: async (deletedComponentId) => {
+          try {
+            await ipcRenderer.invoke('delete-component', deletedComponentId)
+            console.log('Actually Deleted Component!')
+          } catch (error) {
+            console.error('Error deleting component from database:', error)
+            throw error
+          }
         }
       }
     })
