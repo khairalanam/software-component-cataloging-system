@@ -16,7 +16,7 @@ const CatalogCard = ({ id, name, description, author }: Catalog): JSX.Element =>
         className="bg-zinc-900 text-white rounded-md list-none p-4 min-h-48 flex flex-col justify-between hover:-translate-y-1 hover:bg-white hover:text-black transition-all active:text-white active:bg-zinc-800 active:translate-y-1 hover:cursor-pointer"
       >
         <div className="flex flex-row items-start justify-between">
-          <h1 className="text-3xl font-bold mb-8 line-clamp-2 text-ellipsis flex-grow">{name}</h1>
+          <h1 className="text-3xl font-bold mb-8 line-clamp-1 text-ellipsis flex-grow">{name}</h1>
 
           <DropdownMenu>
             <DropdownMenuTrigger className="focus:outline-none text-2xl">
