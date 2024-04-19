@@ -24,20 +24,7 @@ const NewComponentInterface = (): JSX.Element => {
       return
     }
 
-    // Generate a random ID
     const id = await generateComponentId()
-
-    // export interface Component {
-    //   id: string
-    //   catalogId: string
-    //   name: string
-    //   type: 'CODE' | 'DESIGN'
-    //   desc?: string
-    //   data: unknown
-    //   frequency?: number
-    //   lastAccessed?: string
-    //   createdAt?: string
-    // }
 
     const lastAccessed = new Date()
     const createdAt = new Date()
@@ -54,13 +41,11 @@ const NewComponentInterface = (): JSX.Element => {
       createdAt
     }
 
-    // Insert the new catalog into the database
     try {
       await window.db.db.insertComponent(JSON.stringify(newComponent), lastAccessed, createdAt)
     } catch (error) {
       console.error('Error inserting component:', error)
     } finally {
-      console.log('Redirecting yoashhhhhh')
       navigate(`/catalogs/${catalogId}`)
     }
   }

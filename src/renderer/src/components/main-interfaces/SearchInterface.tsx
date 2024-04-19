@@ -15,8 +15,6 @@ const SearchInterface = (): JSX.Element => {
     fetchingComponents()
   }, [])
 
-  console.log(components)
-
   const filteredComponents = components.filter((component) =>
     component.name.toLowerCase().includes(searchQuery.toLowerCase())
   )

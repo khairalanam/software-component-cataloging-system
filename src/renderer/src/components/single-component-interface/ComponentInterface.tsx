@@ -19,33 +19,12 @@ const ComponentInterface = (): JSX.Element => {
 
   useEffect(() => {
     const fetchingComponent = async (): Promise<void> => {
-      console.log('fetch notfetching')
       const fetchedComponent = await window.db.db.fetchSingleComponent(componentId)
       setComponent(fetchedComponent)
-      console.log('True?: ', component)
     }
 
     fetchingComponent()
   }, [componentId])
-
-  console.log('Component Fetched I guess:', componentId)
-
-  // (
-  //   `
-  // CREATE TABLE IF NOT EXISTS components (
-  // id VARCHAR(17) PRIMARY KEY,
-  // name TEXT,
-  // type TEXT,
-  // catalog_id VARCHAR(16),
-  // data TEXT,
-  // description TEXT,
-  // frequency INTEGER DEFAULT 0,
-  // last_accessed DATETIME,
-  // created_at DATETIME,
-  // FOREIGN KEY (catalog_id) REFERENCES catalogs(id)
-  // )
-  // `
-  // )
 
   return (
     <>

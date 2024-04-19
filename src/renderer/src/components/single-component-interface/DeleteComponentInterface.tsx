@@ -6,12 +6,9 @@ const DeleteComponentInterface = (): JSX.Element => {
   const [catalogId, setCatalogId] = useState<string | undefined>('')
   const navigate = useNavigate()
 
-  console.log(componentId, useParams())
-
   useEffect(() => {
     const fetchingSingleComponent = async (): Promise<void> => {
       const fetchedComponent = await window.db.db.fetchSingleComponent(componentId)
-      console.log(fetchedComponent)
       setCatalogId(fetchedComponent.catalog_id)
     }
 

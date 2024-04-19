@@ -42,9 +42,7 @@ if (process.contextIsolated) {
         },
         insertCatalog: async (newCatalog) => {
           try {
-            // await ipcRenderer.invoke('create-tables')
             await ipcRenderer.invoke('insert-catalog', newCatalog)
-            console.log('Actually Inserted!')
           } catch (error) {
             console.error('Error inserting catalog to database:', error)
             throw error
@@ -61,9 +59,7 @@ if (process.contextIsolated) {
         },
         updateCatalog: async (updatedCatalog) => {
           try {
-            // await ipcRenderer.invoke('create-tables')
             await ipcRenderer.invoke('update-catalog', updatedCatalog)
-            console.log('Actually Updated!')
           } catch (error) {
             console.error('Error updating catalog in database:', error)
             throw error
@@ -72,7 +68,6 @@ if (process.contextIsolated) {
         deleteCatalog: async (deletedCatalogId) => {
           try {
             await ipcRenderer.invoke('delete-catalog', deletedCatalogId)
-            console.log('Actually Deleted!')
           } catch (error) {
             console.error('Error deleting catalog from database:', error)
             throw error
@@ -80,7 +75,6 @@ if (process.contextIsolated) {
         },
         fetchComponentsByCatalog: async (catalogId) => {
           try {
-            // await ipcRenderer.invoke('create-tables')
             const fetchedComponents = await ipcRenderer.invoke(
               'fetch-components-by-catalog',
               catalogId
@@ -93,9 +87,7 @@ if (process.contextIsolated) {
         },
         insertComponent: async (newComponent, lastAccessed, createdAt) => {
           try {
-            // await ipcRenderer.invoke('create-tables')
             await ipcRenderer.invoke('insert-component', newComponent, lastAccessed, createdAt)
-            console.log('Actually Comp Inserted!')
           } catch (error) {
             console.error('Error inserting component to database:', error)
             throw error
@@ -103,7 +95,6 @@ if (process.contextIsolated) {
         },
         fetchSingleComponent: async (componentId) => {
           try {
-            console.log('Really')
             const fetchedComponent = await ipcRenderer.invoke('fetch-single-component', componentId)
             return fetchedComponent
           } catch (error) {
@@ -114,7 +105,6 @@ if (process.contextIsolated) {
         deleteComponent: async (deletedComponentId) => {
           try {
             await ipcRenderer.invoke('delete-component', deletedComponentId)
-            console.log('Actually Deleted Component!')
           } catch (error) {
             console.error('Error deleting component from database:', error)
             throw error
@@ -122,9 +112,7 @@ if (process.contextIsolated) {
         },
         updateComponent: async (updatedComponent) => {
           try {
-            // await ipcRenderer.invoke('create-tables')
             await ipcRenderer.invoke('update-component', updatedComponent)
-            console.log('Actually Component Updated!')
           } catch (error) {
             console.error('Error updating component in database:', error)
             throw error

@@ -17,15 +17,11 @@ const NewCatalogForm = (): JSX.Element => {
       return
     }
 
-    // Generate a random ID
     const id = await generateCatalogId()
 
-    // Insert the new catalog into the database
     const newCatalog: Catalog = { id, name, description, author }
     try {
       await window.db.db.insertCatalog(JSON.stringify(newCatalog))
-      // onCatalogAdded()
-      // onClose()
     } catch (error) {
       console.error('Error inserting catalog:', error)
     } finally {

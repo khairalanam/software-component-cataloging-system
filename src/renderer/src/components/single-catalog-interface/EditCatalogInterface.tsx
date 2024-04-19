@@ -24,11 +24,8 @@ const EditCatalogInterface = (): JSX.Element => {
       return
     }
 
-    // Insert the new catalog into the database
     try {
       await window.db.db.updateCatalog(JSON.stringify(catalog))
-      // onCatalogAdded()
-      // onClose()
     } catch (error) {
       console.error('Error updating catalog:', error)
     } finally {

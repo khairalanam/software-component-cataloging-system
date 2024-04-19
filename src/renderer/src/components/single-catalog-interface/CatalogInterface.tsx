@@ -17,8 +17,6 @@ const CatalogInterface = (): JSX.Element => {
     fetchingCatalog()
   }, [catalogId])
 
-  console.log('Fetched I guess:', catalogId)
-
   return (
     <>
       <section className="text-white">

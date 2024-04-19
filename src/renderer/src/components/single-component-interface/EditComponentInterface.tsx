@@ -39,11 +39,8 @@ const EditComponentInterface = (): JSX.Element => {
       return
     }
 
-    // Insert the new component into the database
     try {
       await window.db.db.updateComponent(JSON.stringify(component))
-      // onCatalogAdded()
-      // onClose()
     } catch (error) {
       console.error('Error updating component:', error)
     } finally {

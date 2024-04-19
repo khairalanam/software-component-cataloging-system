@@ -75,7 +75,6 @@ app.whenReady().then(() => {
     try {
       const database = await db
       const fetchedCatalogs = await database.prepare('SELECT * FROM catalogs').all()
-      console.log('Yay!')
       return fetchedCatalogs
     } catch (error) {
       console.error('Error fetching catalogs:', error)
@@ -120,15 +119,12 @@ app.whenReady().then(() => {
       .run()
 
     console.log(componentTable.changes)
-
-    console.log('Tables created!')
   })
 
   ipcMain.handle('fetch-components', async () => {
     try {
       const database = await db
       const fetchedComponents = await database.prepare('SELECT * FROM components').all()
-      console.log('Yay Yay!')
       return fetchedComponents
     } catch (error) {
       console.error('Error fetching components:', error)
@@ -142,7 +138,6 @@ app.whenReady().then(() => {
       const fetchedCatalog = await database
         .prepare('SELECT * FROM catalogs WHERE id = ?')
         .get(catalogId)
-      console.log('Even Yay!')
       return fetchedCatalog
     } catch (error) {
       console.error('Error fetching single catalog', error)
@@ -160,7 +155,6 @@ app.whenReady().then(() => {
       })
 
       await insertOne(JSON.parse(newCatalog))
-      console.log('Actual Insert Yay!')
     } catch (error) {
       console.error('Error inserting catalogs:', error)
       throw error
@@ -179,7 +173,6 @@ app.whenReady().then(() => {
       })
 
       await updateOne(JSON.parse(updatedCatalog))
-      console.log('Actual Update Yay!')
     } catch (error) {
       console.error('Error updating catalog:', error)
       throw error
@@ -200,7 +193,6 @@ app.whenReady().then(() => {
       })
 
       await deleteOne(deletedCatalogId)
-      console.log('Actual Delete Yay!')
     } catch (error) {
       console.error('Error deleting catalog:', error)
       throw error
@@ -214,7 +206,6 @@ app.whenReady().then(() => {
         .prepare('SELECT * FROM components WHERE catalog_id = ?')
         .all(catalogId)
 
-      console.log('Yippee Kay Yeey!')
       return fetchedComponents
     } catch (error) {
       console.error('Error fetching components:', error)
@@ -244,7 +235,6 @@ app.whenReady().then(() => {
       })
 
       await insertOne(JSON.parse(newComponent))
-      console.log('Actual Insert Comp Yay!')
     } catch (error) {
       console.error('Error inserting component:', error)
       throw error
@@ -254,11 +244,9 @@ app.whenReady().then(() => {
   ipcMain.handle('fetch-single-component', async (_, componentId) => {
     try {
       const database = await db
-      console.log('Single Component Fetching')
       const fetchedComponent = await database
         .prepare('SELECT * FROM components WHERE id = ?')
         .get(componentId)
-      console.log('Even Fetch Single Component Yay!')
       return fetchedComponent
     } catch (error) {
       console.error('Error fetching single component', error)
@@ -278,7 +266,6 @@ app.whenReady().then(() => {
       })
 
       await deleteOne(deletedComponentId)
-      console.log('Actual Delete Component Yay!')
     } catch (error) {
       console.error('Error deleting component:', error)
       throw error
@@ -297,7 +284,6 @@ app.whenReady().then(() => {
       })
 
       await updateOne(JSON.parse(updatedComponent))
-      console.log('Actual Update Component Yay!')
     } catch (error) {
       console.error('Error updating component:', error)
       throw error

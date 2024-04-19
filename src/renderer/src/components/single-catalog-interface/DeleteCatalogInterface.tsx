@@ -4,8 +4,6 @@ const DeleteCatalogInterface = (): JSX.Element => {
   const { catalogId } = useParams()
   const navigate = useNavigate()
 
-  console.log(catalogId)
-
   const handleDelete = async (): Promise<void> => {
     try {
       await window.db.db.deleteCatalog(catalogId)

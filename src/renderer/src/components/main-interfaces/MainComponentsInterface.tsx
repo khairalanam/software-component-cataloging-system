@@ -14,8 +14,6 @@ const MainComponentsInterface = (): JSX.Element => {
     fetchingComponents()
   }, [])
 
-  console.log('components: ', components)
-
   return (
     <ul className="bg-zinc-700 p-4 rounded-lg max-h-fit grid grid-flow-row grid-cols-3 gap-4 max-lg:grid-cols-2">
       {components &&
