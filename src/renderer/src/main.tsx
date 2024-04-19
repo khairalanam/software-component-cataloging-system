@@ -9,6 +9,7 @@ import CatalogInterface from './components/single-catalog-interface/CatalogInter
 import NewCatalogForm from './components/single-catalog-interface/NewCatalogForm'
 import EditCatalogInterface from './components/single-catalog-interface/EditCatalogInterface'
 import DeleteCatalogInterface from './components/single-catalog-interface/DeleteCatalogInterface'
+import NewComponentInterface from './components/single-component-interface/NewComponentInterface'
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: '/catalogs/:catalogId',
     element: <CatalogInterface />
+  },
+  {
+    path: '/catalogs/:catalogId/new-component',
+    element: <NewComponentInterface />
   },
   {
     path: '/new-catalog',

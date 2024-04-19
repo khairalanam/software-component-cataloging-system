@@ -77,6 +77,29 @@ if (process.contextIsolated) {
             console.error('Error deleting catalog from database:', error)
             throw error
           }
+        },
+        fetchComponentsByCatalog: async (catalogId) => {
+          try {
+            // await ipcRenderer.invoke('create-tables')
+            const fetchedComponents = await ipcRenderer.invoke(
+              'fetch-components-by-catalog',
+              catalogId
+            )
+            return fetchedComponents
+          } catch (error) {
+            console.error('Error fetching components from database:', error)
+            throw error
+          }
+        },
+        insertComponent: async (newComponent, lastAccessed, createdAt) => {
+          try {
+            // await ipcRenderer.invoke('create-tables')
+            await ipcRenderer.invoke('insert-component', newComponent, lastAccessed, createdAt)
+            console.log('Actually Comp Inserted!')
+          } catch (error) {
+            console.error('Error inserting component to database:', error)
+            throw error
+          }
         }
       }
     })

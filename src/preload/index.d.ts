@@ -14,6 +14,8 @@ declare global {
         fetchSingleCatalog: (string) => Catalog
         updateCatalog: (string) => void
         deleteCatalog: (string) => void
+        fetchComponentsByCatalog: (string) => Component[]
+        insertComponent: (string, Date, Date) => void
       }
     }
   }

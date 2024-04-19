@@ -4,6 +4,7 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png'
 import Database from 'better-sqlite3'
 import { Catalog } from '@/types/Catalog'
+import { Component } from '@/types/Component'
 
 const dbPath = 'db/data.db'
 
@@ -84,7 +85,7 @@ app.whenReady().then(() => {
 
   ipcMain.handle('create-tables', async () => {
     const database = await db
-    const newTable = await database
+    const catalogTable = await database
       .prepare(
         `
     CREATE TABLE IF NOT EXISTS catalogs (
@@ -97,22 +98,28 @@ app.whenReady().then(() => {
       )
       .run()
 
-    console.log(newTable.changes)
+    console.log(catalogTable.changes)
 
-    // await database.exec(`
-    // CREATE TABLE IF NOT EXISTS components (
-    //   id INTEGER PRIMARY KEY,
-    //   name TEXT,
-    //   type TEXT,
-    //   catalog_id INTEGER,
-    //   data TEXT,
-    //   description TEXT,
-    //   frequency INTEGER DEFAULT 0,
-    //   last_accessed TEXT,
-    //   created_at TEXT,
-    //   FOREIGN KEY (catalog_id) REFERENCES catalogs(id)
-    // )
-    // `)
+    const componentTable = await database
+      .prepare(
+        `
+    CREATE TABLE IF NOT EXISTS components (
+      id VARCHAR(17) PRIMARY KEY,
+      name TEXT,
+      type TEXT,
+      catalog_id VARCHAR(16),
+      data TEXT,
+      description TEXT,
+      frequency INTEGER DEFAULT 0,
+      last_accessed DATETIME,
+      created_at DATETIME,
+      FOREIGN KEY (catalog_id) REFERENCES catalogs(id)
+    )
+    `
+      )
+      .run()
+
+    console.log(componentTable.changes)
 
     console.log('Tables created!')
   })
@@ -194,6 +201,50 @@ app.whenReady().then(() => {
       console.log('Actual Delete Yay!')
     } catch (error) {
       console.error('Error deleting catalog:', error)
+      throw error
+    }
+  })
+
+  ipcMain.handle('fetch-components-by-catalog', async (_, catalogId) => {
+    try {
+      const database = await db
+      const fetchedComponents = await database
+        .prepare('SELECT * FROM components WHERE catalog_id = ?')
+        .all(catalogId)
+
+      console.log('Yippee Kay Yeey!')
+      return fetchedComponents
+    } catch (error) {
+      console.error('Error fetching components:', error)
+      throw error
+    }
+  })
+
+  ipcMain.handle('insert-component', async (_, newComponent, lastAccessed, createdAt) => {
+    try {
+      const database = await db
+      const newComponentInsert = await database.prepare(
+        'INSERT into components VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+      )
+
+      const insertOne = database.transaction((component: Component) => {
+        newComponentInsert.run(
+          component.id,
+          component.name,
+          component.type,
+          component.catalogId,
+          component.data,
+          component.desc,
+          component.frequency,
+          lastAccessed!.toISOString().slice(0, 19).replace('T', ' '),
+          createdAt!.toISOString().slice(0, 19).replace('T', ' ')
+        )
+      })
+
+      await insertOne(JSON.parse(newComponent))
+      console.log('Actual Insert Comp Yay!')
+    } catch (error) {
+      console.error('Error inserting component:', error)
       throw error
     }
   })
