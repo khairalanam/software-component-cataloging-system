@@ -17,10 +17,10 @@ const MainComponentsInterface = (): JSX.Element => {
   return (
     <ul className="bg-zinc-700 p-4 rounded-lg max-h-fit grid grid-flow-row grid-cols-3 gap-4 max-lg:grid-cols-2">
       {components &&
-        components.map(({ id, catalogId, name, type, description, data }) => (
+        components.map(({ id, catalog_id, name, type, description, data }) => (
           <ComponentCard
             key={id}
-            catalogId={catalogId}
+            catalogId={catalog_id}
             id={id}
             name={name}
             description={description}

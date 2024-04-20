@@ -21,7 +21,7 @@ const ListOfComponents = (): JSX.Element => {
         catalogComponents.map((component: Component) => (
           <ComponentCard
             key={component.id}
-            catalogId={component.catalogId}
+            catalogId={component.catalog_id}
             id={component.id}
             name={component.name}
             description={component.description}

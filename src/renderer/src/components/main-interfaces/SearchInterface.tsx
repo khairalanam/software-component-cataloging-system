@@ -29,10 +29,10 @@ const SearchInterface = (): JSX.Element => {
         onChange={(e) => setSearchQuery(e.target.value)}
       />
       <ul className="grid grid-flow-row grid-cols-3 gap-4 max-lg:grid-cols-2">
-        {filteredComponents.map(({ id, catalogId, name, type, description, data }) => (
+        {filteredComponents.map(({ id, catalog_id, name, type, description, data }) => (
           <ComponentCard
             key={id}
-            catalogId={catalogId}
+            catalogId={catalog_id}
             id={id}
             name={name}
             description={description}

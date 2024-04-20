@@ -74,7 +74,7 @@ const EditComponentInterface = (): JSX.Element => {
             <textarea
               id="description"
               value={component.description}
-              placeholder="Catalog description"
+              placeholder="Component description"
               onChange={(e) => setComponent((prev) => ({ ...prev, description: e.target.value }))}
               className="bg-zinc-800 text-white rounded mb-4 focus:outline-none w-full p-4 hover:bg-zinc-900 transition-colors focus:bg-zinc-900"
             ></textarea>

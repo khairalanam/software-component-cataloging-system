@@ -30,9 +30,10 @@ const CatalogInterface = (): JSX.Element => {
         </div>
         <div className="flex flex-col gap-8 my-8">
           <h1 className="text-5xl font-bold">{catalog?.name}</h1>
-          <h4 className="text-zinc-400">
-            <i>Author: {catalog?.author}</i>
-          </h4>
+          <div className="text-zinc-400">
+            <p>Catalog ID: {catalog?.id}</p>
+            <p>Author: {catalog?.author}</p>
+          </div>
         </div>
         <p className="text-zinc-200">
           {catalog?.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
