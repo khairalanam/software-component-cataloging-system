@@ -35,13 +35,13 @@ The SCCS features a robust architecture leveraging ElectronJS for cross-platform
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/khairalanam/sccs.git
+   git clone https://github.com/khairalanam/software-component-cataloging-system.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd sccs
+   cd software-component-cataloging-system
    ```
 
 3. Install dependencies:
