@@ -19,6 +19,10 @@ Software Component Cataloging System (SCCS) is a project, developed as part of a
 
 The SCCS features a robust architecture leveraging ElectronJS for cross-platform desktop applications, React for dynamic user interfaces, Node.js for the backend logic, and SQLite for local data storage. Tailwind CSS and ShadCN are employed for styling, ensuring a sleek and responsive design. TypeScript provides type safety throughout the codebase, and Vite ensures fast builds and hot module replacement for an efficient development workflow.
 
+## Demonstration
+
+https://github.com/khairalanam/software-component-cataloging-system/assets/84736189/d1c8e469-da4c-4d31-b0b6-53af8a8a25e3
+
 ## Tech Stack
 
 - **ElectronJS**
