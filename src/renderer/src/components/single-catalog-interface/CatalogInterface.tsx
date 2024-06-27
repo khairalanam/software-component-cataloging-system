@@ -35,11 +35,7 @@ const CatalogInterface = (): JSX.Element => {
             <p>Author: {catalog?.author}</p>
           </div>
         </div>
-        <p className="text-zinc-200">
-          {catalog?.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-          voluptas praesentium consectetur velit ratione quisquam ut non odio porro a ipsam, eaque
-          enim officia excepturi laudantium itaque quod fugiat earum.
-        </p>
+        <p className="text-zinc-200">{catalog?.description}</p>
       </section>
       <ListOfComponents />
     </>
